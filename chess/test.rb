@@ -1,6 +1,5 @@
 require_relative 'piece.rb'
 require_relative 'nullpiece'
-require_relative 'display'
 
 class Board
 
@@ -71,14 +70,40 @@ end
 if $PROGRAM_NAME == __FILE__
   b = Board.new
   b.setup
-  d = Display.new(b)
-  # 
-  # # Mess Around
-  while true
-    d.render
-    d.cursor.get_input
-  end
-  d.display.cursor
-  d.render
 
+
+
+HORIZONTAL_DIRS = [
+  [-1,0],
+  [1,0],
+  [0,1],
+  [0,-1]
+].freeze
+
+DIAGONAL_DIRS = [
+  [-1,1],
+  [1,1],
+  [-1,-1],
+  [1,-1]
+].freeze
+
+
+def grow_unblocked_moves_in_dir(dx,dy,board)
+  moves = []
+  #curr_pos = self.pos
+  curr_pos = [0,0]  # test stub
+  curr_x, curr_y = curr_pos
+  
+    1.upto(7) do |step|
+      potential = [curr_x + (step * dx), curr_y + (step * dy)] 
+      potential
+      case 
+      break if board(potential).value != nil && board(potential).color @oppon
+      break if boat
+      moves.concat([potential])
+    end
+  moves.select{|el| el if }
+end
+
+grow_unblocked_moves_in_dir(1,0,b)
 end
